@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>GIFS Search</title>
+</head>
+<body>
+    
+        <div class="container">
+            <h1>GIFs <span>Search</span></h1>
+            <div class="content">
+                <div class="search__content">
+                    <div class="search-container">
+                        <input class="search" type="text" id="search-input" placeholder="ключевое слово">
+                        <span class="search-clear" id="search-clear">&#10005;</span>
+                      </div>     
+                    <button class="search__btn" onclick="searchGifs()"><i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="gif-grid" id="gif-grid"></div>
+                <div class="load-more" id="load-more">
+                    <button class="btn__load" onclick="loadMore()">Загрузить ещё</button>
+                </div>
+            </div>
+        </div>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
