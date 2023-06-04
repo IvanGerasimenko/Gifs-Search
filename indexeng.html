@@ -11,28 +11,29 @@
     <title>Gif Finder</title>
 </head>
 <body>
-    <a class="eng__lang" href="indexeng.html">English</a>
+    <a class="eng__lang" href="index.html">Russian</a>
         <div class="container">
             <a href="index.html" class="logo">gif <span>Finder</span></a>
-            <h1 class="text">Поиск GIF-изображений</h1>
+            <h1 class="text">GIF search</h1>
             <div class="arrow-down"></div>
             <div class="arrow-down--clone"></div>
             <div class="content">
                 <div class="search__content">
                     <div class="search-container">
-                        <div id="error-text" style="color: rgb(233, 52, 52);"></div>
-                        <input class="search" type="text" id="search-input" placeholder="Найди гифки">
+                        <div id="error-text" style="color: red;"></div>
+                        <input class="search" type="text" id="search-input" placeholder="find a gif">
                         <span class="search-clear" id="search-clear">&#10005;</span>
                         <button class="search__btn" onclick="searchGifs()"><i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                       </div>     
-                </div>                
+                </div>
+
                 <div class="gif-grid" id="gif-grid"></div>
                 <div class="load-more" id="load-more">
-                    <button class="btn__load" onclick="loadMore()">Загрузить ещё</button>
+                    <button class="btn__load" onclick="loadMore()">load more</button>
                 </div>
             </div>
         </div>
-<script src="./js/script.js"></script>
+<script src="./js/scripttwo.js"></script>
 </body>
 </html>
