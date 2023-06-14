@@ -18,7 +18,6 @@ body {
   min-height: 100vh;
   border-color: 1px solid #0d5beb;
   padding-top: 30px;
-  animation: textGlich  2s infinite;
 }
 
 .results__message {
