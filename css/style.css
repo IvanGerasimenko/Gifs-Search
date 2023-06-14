@@ -1,12 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Puddles&family=Slackside+One&display=swap');
 
 
+*{
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    font-family: 'Slackside One', cursive;
-    background-color: #161616;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Slackside One', cursive;
+  background-color: #161616;
+  background-image: url('/bg/1.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.results__message {
+  color: #ffffff;
+  background-color: #0d5beb;
+  padding: 10px;
 }
 
   .eng__lang{
@@ -40,15 +55,32 @@ body {
     justify-content: center;
     z-index: 9999;
   }
-  
+
+  .download__btn{
+    margin-top: 15px;
+    outline: none;
+    background-color: #00ff00;
+    border: 0;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+
+
   .fullscreen-container img {
     max-width: 100%;
     max-height: 100%;
   }
   @media (min-width: 460px){
     .fullscreen-container img{
-      width: 70%;
-      height: 60%;
+      width: 90%;
+      height: 90%;
+    }
+  }
+  @media (max-width: 460px){
+    .fullscreen-container img{
+      width: 100%;
+      height: 40%;
     }
   }
   
@@ -75,13 +107,12 @@ body {
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
-    color: #ffffff;
     font-family: 'Rubik Puddles', cursive;
-    border-bottom: 1px solid #fff;
   }
   
   .logo span {
     color: #17b8f8;
+    text-shadow: 0 0 1px , 0 0 3px #fff, 0 0 15px #4a8ee7, 0 0 7px #5488e7, 0 0 1px #5488e7, 0 0 0px #5488e7, 0 0 15px #5488e7;
   }
   
   .text {
@@ -93,9 +124,20 @@ body {
     animation: textGlich  2s infinite;
   }
   @keyframes textGlich {
-    0% {
-      text-shadow: rgb(80, 222, 247) -3px 0,
-      rgb(206, 243, 104) 3px 0;
+    0%{
+      text-shadow: 0 0 1px , 0 0 3px #fff, 0 0 15px #4a8ee7, 0 0 7px #5488e7, 0 0 1px #5488e7, 0 0 0px #5488e7, 0 0 15px #5488e7;
+    }
+
+    50%{
+      text-shadow: 0 0 1px , 0 0 3px #fff, 0 0 15px #4431ec, 0 0 7px #4431ec, 0 0 1px #4431ec, 0 0 0px #4431ec, 0 0 15px #4431ec;
+    }
+
+    75%{
+      text-shadow:0 0 1px , 0 0 3px #fff, 0 0 15px #c464fc, 0 0 7px #c464fc, 0 0 1px #c464fc, 0 0 0px #c464fc, 0 0 15px #c464fc;
+    }
+
+    100%{
+      text-shadow:  0 0 1px , 0 0 3px #fff, 0 0 15px #4a8ee7, 0 0 7px #5488e7, 0 0 1px #5488e7, 0 0 0px #5488e7, 0 0 15px #5488e7;
     }
   }
   
@@ -104,16 +146,16 @@ body {
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #4765eb;
+    border-top: 10px solid #ffffff;
     margin: 0 auto;
     animation: arrowBounce 1s infinite;
   }
   .arrow-down--clone{
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #0d5beb;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #ffffff;
     margin: 0 auto;
     animation: arrowBounceclone 1s infinite;
   }
@@ -161,6 +203,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
+    animation: neon-glow 2s ease-in-out infinite alternate;
   }
   
   .search-clear {
@@ -202,6 +245,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
+    position: relative; /* Добавляем позиционирование для псевдоэлемента */
   }
   
   .gif-item img {
@@ -211,6 +255,31 @@ body {
     object-fit: cover;
     border-radius: 4px;
   }
+  
+  .gif-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    opacity: 0.8; /* Прозрачность неонового света */
+    pointer-events: none; /* Позволяет кликать сквозь псевдоэлемент */
+    z-index: -1; /* Помещаем псевдоэлемент позади элемента .gif-item */
+    box-shadow: 0 0 10px 5px #5f22ee; /* Добавляем неоновый эффект */
+    border-radius: 4px;
+    animation: neon-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes neon-glow {
+    0% {
+      box-shadow: 0 0 10px 5px #00ff00;
+    }
+    100% {
+      box-shadow: 0 0 10px 5px #ff00ff;
+    }
+  }
+  
   
   .download-button {
     margin-top: 10px;
@@ -224,7 +293,6 @@ body {
   
   .load-more {
     margin-top: 30px;
-    display: none;
     margin-bottom: 40px;
   }
   

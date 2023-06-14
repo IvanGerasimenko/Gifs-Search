@@ -1,11 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   searchInput.value = 'Добро пожаловать';
-  
-  searchGifs();
-});
 
-document.addEventListener('DOMContentLoaded', () => {
   searchGifs();
 });
 
@@ -15,11 +11,11 @@ const searchClear = document.getElementById('search-clear');
 searchClear.addEventListener('click', () => {
   searchInput.value = '';
 });
-    
+
 let offset = 0;
 let currentSearch = '';
 
-function openFullscreen(imageSrc, images) {
+function openFullscreen(imageSrc) {
   const fullscreenContainer = document.createElement('div');
   fullscreenContainer.className = 'fullscreen-container';
 
@@ -90,10 +86,10 @@ function searchGifs() {
     return;
   } else {
     errorText.textContent = '';
-  }  
+  }
   currentSearch = query;
   offset = 0;
-  
+
   fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&offset=${offset}&limit=12`)
     .then(response => response.json())
     .then(data => {
@@ -103,13 +99,16 @@ function searchGifs() {
       console.error('Error:', error);
     });
 }
+
 function displayGifs(gifs) {
   const gifGrid = document.getElementById('gif-grid');
   gifGrid.innerHTML = '';
 
   if (gifs.length === 0) {
-    const noResultsMessage = document.createElement('p');
+    const noResultsMessage = document.createElement('div');
     noResultsMessage.textContent = 'По вашему запросу ничего не найдено.';
+    gifGrid.appendChild(noResultsMessage);
+    noResultsMessage.className = 'results__message'; // Добавление класса CSS
     gifGrid.appendChild(noResultsMessage);
     return;
   }
@@ -123,17 +122,33 @@ function displayGifs(gifs) {
     gifItem.appendChild(img);
     gifGrid.appendChild(gifItem);
 
+    const downloadButton = document.createElement('button');
+    downloadButton.classList.add('download__btn');
+    downloadButton.textContent = 'Загрузить';
+    gifItem.appendChild(downloadButton);
+
+    downloadButton.addEventListener('click', () => {
+      downloadImage(gif.images.original.url);
+    });
+
     img.addEventListener('click', () => {
       openFullscreen(img.src);
     });
   });
+}
 
-  const loadMoreButton = document.getElementById('load-more');
-  if (gifs.length === 0) {
-    loadMoreButton.style.display = 'none'; // Скрываем кнопку "Загрузить ещё", если GIF-изображений нет
-  } else {
-    loadMoreButton.style.display = 'block'; // Показываем кнопку "Загрузить ещё", если есть GIF-изображения
-  }
+function downloadImage(url) {
+  fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = 'image.gif';
+      downloadLink.click();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
 
 function loadMore() {
