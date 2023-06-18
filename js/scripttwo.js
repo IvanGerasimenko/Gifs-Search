@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
-  searchInput.value = 'Добро пожаловать';
+  searchInput.value = 'Welcome';
 
   searchGifs();
 });
@@ -32,7 +32,7 @@ function openFullscreen(imageSrc) {
   nextButton.className = 'next-button';
 
   const closeButton = document.createElement('button');
-  closeButton.textContent = 'Закрыть';
+  closeButton.textContent = 'Close';
   closeButton.className = 'close-button';
 
   fullscreenContainer.appendChild(prevButton);
@@ -82,7 +82,7 @@ function searchGifs() {
   const query = searchInput.value.trim();
   const errorText = document.getElementById('error-text');
   if (query === '') {
-    errorText.textContent = 'У вас пустое поле!';
+    errorText.textContent = 'You have an empty field!';
     return;
   } else {
     errorText.textContent = '';
@@ -106,7 +106,7 @@ function displayGifs(gifs) {
 
   if (gifs.length === 0) {
     const noResultsMessage = document.createElement('p');
-    noResultsMessage.textContent = 'По вашему запросу ничего не найдено.';
+    noResultsMessage.textContent = 'Nothing was found according to your request.';
     gifGrid.appendChild(noResultsMessage);
     noResultsMessage.className = 'results__message'; // Добавление класса CSS
     gifGrid.appendChild(noResultsMessage);
@@ -124,7 +124,7 @@ function displayGifs(gifs) {
 
     const downloadButton = document.createElement('button');
     downloadButton.classList.add('download__btn');
-    downloadButton.textContent = 'Загрузить';
+    downloadButton.textContent = 'Download';
     gifItem.appendChild(downloadButton);
 
     downloadButton.addEventListener('click', () => {
